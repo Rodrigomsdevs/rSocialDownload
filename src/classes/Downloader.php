@@ -16,7 +16,10 @@ class Downloader
             $facebookModel = new FacebookDownloader($videoUrl);
             $this->downloaderModel = $facebookModel;
         } elseif (strpos($videoUrl, "instagram.com") !== false) {
-            // TODO: Implement Instagram downloader
+            include("InstagramDownloader.php");
+
+            $instagramModel = new InstagramDownloader($videoUrl);
+            $this->downloaderModel = $instagramModel;
         }
     }
 
@@ -27,9 +30,6 @@ class Downloader
         }
 
         $this->downloaderModel->execute();
-
-
-
         return $this->downloaderModel->getResponse();
     }
 }
